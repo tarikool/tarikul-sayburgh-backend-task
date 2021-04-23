@@ -24,7 +24,8 @@ Route::post('register', [AuthController::class, 'register']);
 
 Route::group(['middleware' => ['auth:sanctum']], function (){
     Route::get('logout', [AuthController::class, 'logout']);
-    Route::apiResource('blogs', BlogController::class)->except('show');
+    Route::apiResource('blogs', BlogController::class)
+        ->except(['index', 'show']);
 
     Route::get('blogs/{blog}/comments', [BlogController::class, 'blogComments']);
     Route::post('blogs/{blog}/comments', [BlogController::class, 'postComment']);
@@ -34,5 +35,6 @@ Route::group(['middleware' => ['auth:sanctum']], function (){
 });
 
 
+Route::get('blogs', [BlogController::class, 'index']);
 Route::get('blogs/{blog}', [BlogController::class, 'show']);
 
