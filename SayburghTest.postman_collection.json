@@ -1,0 +1,640 @@
+{
+	"info": {
+		"_postman_id": "75b0764c-0c61-4959-a51c-50d67180aebd",
+		"name": "SayburghTest",
+		"description": "Api for a blog site.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "user01",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "user02@example.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/login",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"login"
+							]
+						},
+						"description": "Login with email and password and get  token"
+					},
+					"response": []
+				},
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "user02",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "user02@example.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/register",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"register"
+							]
+						},
+						"description": "Register users with name, email and password. Get token to login"
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "2|BoU8o4MVUMMGeEec6PEDVhLDfUCR8jHsgh0oxPfy",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "user01",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "email",
+									"value": "user02@example.com",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/logout",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"logout"
+							]
+						},
+						"description": "Logout already logged in users. Invalidate current access token for a user"
+					},
+					"response": []
+				}
+			],
+			"description": "User authentication api's. Available methods for registration, login and logout"
+		},
+		{
+			"name": "Blog",
+			"item": [
+				{
+					"name": "all blogs",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "At by in led our would simple, alarm everyone. Makers",
+									"type": "text"
+								},
+								{
+									"key": "body",
+									"value": "Though, the to is and play. Hero's watching the and man the dry effects, self-interest, respective there what then motivator, to question. Change. And it of outside fully measures occupied alone, hard are watching clarinet on series best still in there is distressed goddesses, the decisions, semantics, a packed.\n\n",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/blogs",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"blogs"
+							]
+						},
+						"description": "Show list of all the blogs. No token is required"
+					},
+					"response": []
+				},
+				{
+					"name": "store blog",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "There's from left with organization. The",
+									"type": "text"
+								},
+								{
+									"key": "body",
+									"value": "It that and he him into work your easier the be who or and a the explain a that we lamps,",
+									"type": "text"
+								},
+								{
+									"key": "tag[]",
+									"value": "tag4",
+									"type": "text"
+								},
+								{
+									"key": "tag[]",
+									"value": "tag2",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/blogs",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"blogs"
+							]
+						},
+						"description": "Authenticate users can create a blog. Required fields: title, body\nOptional: tag[]"
+					},
+					"response": []
+				},
+				{
+					"name": "show blog",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "user01",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "user02@example.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/blogs/4",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"blogs",
+								"4"
+							]
+						},
+						"description": "Shows details of a blog with total number of comments, tags and author's info"
+					},
+					"response": []
+				},
+				{
+					"name": "update blog",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "_method",
+									"value": "PUT",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "Rationale passion unionized behavioural we're harmonic",
+									"type": "text"
+								},
+								{
+									"key": "body",
+									"value": "A be problem be sharpness point to expand concise changes ",
+									"type": "text"
+								},
+								{
+									"key": "tag[]",
+									"value": "tag1",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "tag[]",
+									"value": "tag2",
+									"type": "text"
+								},
+								{
+									"key": "tag[]",
+									"value": "tag3",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/blogs/2",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"blogs",
+								"2"
+							]
+						},
+						"description": "Only the author of the blog can update the blog info.\nRequired fields: title, body \nOptional: tag[]"
+					},
+					"response": []
+				},
+				{
+					"name": "delete blog",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/blogs/1",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"blogs",
+								"1"
+							]
+						},
+						"description": "Owner of blog can delete the blog"
+					},
+					"response": []
+				},
+				{
+					"name": "blog all comments",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "body",
+									"value": "Though, the to is and play. Hero's watching the and man the dry effects, self-interest, respective there what then motivator, to question. Change. And it of outside fully measures occupied alone, hard are watching clarinet on series best still in there is distressed goddesses, the decisions, semantics, a packed.\n",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/blogs/1/comments",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"blogs",
+								"1",
+								"comments"
+							]
+						},
+						"description": "List of all comments for a specific blog."
+					},
+					"response": []
+				},
+				{
+					"name": "post comment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "body",
+									"value": "Post comment from user 2\n",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/blogs/1/comments",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"blogs",
+								"1",
+								"comments"
+							]
+						},
+						"description": "Authenticated users can post any comment inside a blog\n\nrequired fields: body"
+					},
+					"response": []
+				},
+				{
+					"name": "update comment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "body",
+									"value": " Change. And it of outside fully measures occupied alone, hard are watching clarinet on series best still in there is distressed goddesses, the decisions, semantics, a packed.\n",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/update-comments/2",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"update-comments",
+								"2"
+							]
+						},
+						"description": "User can update their own comments"
+					},
+					"response": []
+				},
+				{
+					"name": "delete comment",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "body",
+									"value": "updated comment",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/delete-comments/2",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"delete-comments",
+								"2"
+							]
+						},
+						"description": "delete the comment"
+					},
+					"response": []
+				}
+			],
+			"description": "Manage blog activites. Post, update, delete, comment, show details etc.",
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "3|Gv67yUwqr8ecdXCDuy9oZCZfR06VmKOJLDs106Dm",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	]
+}
